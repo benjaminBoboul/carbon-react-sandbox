@@ -290,7 +290,7 @@ options: {
         </Header>
         <Hello name={this.state.name} />
         <p>
-          Start editing to see some magic happen :)
+          Start editing to see some magic happen :) <Tag type="red" title="Clear Filter"> Red </Tag>
         </p>
         <DataTable rows={[0, 0, 0]} headers={["value"]} isSortable>
           {({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
@@ -395,7 +395,23 @@ options: {
 		"value": 16
 	}
 ]}
-          options={this.state.options}>
+          options={{
+	"title": "Line (dense time series)",
+	"axes": {
+		"bottom": {
+			"title": "2019 Annual Sales Figures",
+			"mapsTo": "date",
+			"scaleType": "time"
+		},
+		"left": {
+			"mapsTo": "value",
+			"title": "Conversion rate",
+			"scaleType": "linear"
+		}
+	},
+	"curve": "curveMonotoneX",
+	"height": "400px"
+}}>
         </RadarChart>
       </div>
     );
