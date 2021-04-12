@@ -1,7 +1,33 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+
 import { LineChart } from "@carbon/charts-react";
+import { RadarChart } from "@carbon/charts-react";
 import "@carbon/charts/styles.css";
+import Search20 from "@carbon/icons-react/lib/search/20";
+import Notification20 from "@carbon/icons-react/lib/notification/20";
+import AppSwitcher20 from "@carbon/icons-react/lib/app-switcher/20";
+
+import {
+  Header,
+  HeaderName,
+  HeaderGlobalAction,
+  HeaderGlobalBar,
+  HeaderNavigation,
+  HeaderMenu,
+  HeaderMenuItem
+} from "carbon-components-react/lib/components/UIShell";
+import DataTable, {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'carbon-components-react/lib/components/DataTable';
+
+
 import Hello from './Hello';
 import './style.css';
 
@@ -239,15 +265,66 @@ options: {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <Header aria-label="IBM Platform Name">
+          <HeaderName href="#" prefix="IBM">
+            [Platform]
+          </HeaderName>
+          <HeaderGlobalBar>
+            <HeaderGlobalAction aria-label="Search" onClick={console.log('search click')}>
+              <Search20 />
+            </HeaderGlobalAction>
+            <HeaderGlobalAction
+              aria-label="Notifications"
+              onClick={console.log('notification click')}>
+              <Notification20 />
+            </HeaderGlobalAction>
+            <HeaderGlobalAction
+              aria-label="App Switcher"
+              onClick={console.log('app-switcher click')}
+              tooltipAlignment="end">
+              <AppSwitcher20 />
+            </HeaderGlobalAction>
+          </HeaderGlobalBar>
+        </Header>
         <Hello name={this.state.name} />
         <p>
           Start editing to see some magic happen :)
         </p>
+        <DataTable rows={[0, 0, 0]} headers={["value"]} isSortable>
+          {({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+            <TableContainer title="DataTable" description="With sorting">
+              <Table {...getTableProps()}>
+                <TableHead>
+                  <TableRow>
+                    {headers.map((header) => (
+                      <TableHeader key={header.key} {...getHeaderProps({ header })}>
+                        {header.header}
+                      </TableHeader>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow key={row.id} {...getRowProps({ row })}>
+                      {row.cells.map((cell) => (
+                        <TableCell key={cell.id}>{cell.value}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </DataTable>
         <LineChart
           data={this.state.data}
           options={this.state.options}>
         </LineChart>
+        <RadarChart
+          data={this.state.data}
+          options={this.state.options}>
+        </RadarChart>
       </div>
     );
   }
