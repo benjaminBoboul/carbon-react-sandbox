@@ -7,6 +7,7 @@ import "@carbon/charts/styles.css";
 import Search20 from "@carbon/icons-react/lib/search/20";
 import Notification20 from "@carbon/icons-react/lib/notification/20";
 import AppSwitcher20 from "@carbon/icons-react/lib/app-switcher/20";
+  import { Tag } from 'carbon-components-react';
 
 import {
   Header,
@@ -322,7 +323,78 @@ options: {
           options={this.state.options}>
         </LineChart>
         <RadarChart
-          data={this.state.data}
+          data={[
+	{
+		"group": "Sugar",
+		"key": "London",
+		"value": 25
+	},
+	{
+		"group": "Oil",
+		"key": "London",
+		"value": 6
+	},
+	{
+		"group": "Water",
+		"key": "London",
+		"value": 12
+	},
+	{
+		"group": "Sugar",
+		"key": "Milan",
+		"value": 13
+	},
+	{
+		"group": "Oil",
+		"key": "Milan",
+		"value": 6
+	},
+	{
+		"group": "Water",
+		"key": "Milan",
+		"value": 28
+	},
+	{
+		"group": "Sugar",
+		"key": "Paris",
+		"value": 19
+	},
+	{
+		"group": "Oil",
+		"key": "Paris",
+		"value": 16
+	},
+	{
+		"group": "Water",
+		"key": "Paris",
+		"value": 10
+	},
+	{
+		"group": "Sugar",
+		"key": "New York",
+		"value": 11
+	},
+	{
+		"group": "Oil",
+		"key": "New York",
+		"value": 18
+	},
+	{
+		"group": "Water",
+		"key": "New York",
+		"value": 8
+	},
+	{
+		"group": "Sugar",
+		"key": "Sydney",
+		"value": 12
+	},
+	{
+		"group": "Oil",
+		"key": "Sydney",
+		"value": 16
+	}
+]}
           options={this.state.options}>
         </RadarChart>
       </div>
